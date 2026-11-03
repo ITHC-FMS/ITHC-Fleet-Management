@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { PageNav, RoleSwitcher } from "@/components/role-nav";
+import { CompanySelector, PageNav, RoleSwitcher } from "@/components/role-nav";
 import { getRole, roles } from "@/config";
 
 export function generateStaticParams() {
@@ -18,10 +18,13 @@ export default async function RoleLayout({ children, params }: LayoutProps<"/[ro
         <Link href="/" className="font-semibold">
           ITHC Fleet Platform
         </Link>
-        <RoleSwitcher
-          roles={roles.map(({ slug, title }) => ({ slug, title }))}
-          current={role.slug}
-        />
+        <div className="flex items-center gap-2">
+          {role.companySelector && <CompanySelector />}
+          <RoleSwitcher
+            roles={roles.map(({ slug, title }) => ({ slug, title }))}
+            current={role.slug}
+          />
+        </div>
       </header>
       <div className="flex flex-1 flex-col md:flex-row">
         <aside className="border-b p-3 md:w-60 md:shrink-0 md:border-b-0 md:border-r">

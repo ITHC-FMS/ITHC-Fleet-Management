@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PhaseBadge } from "@/components/phase-badge";
 import { RequirementsPanel } from "@/components/requirements-panel";
@@ -27,6 +28,11 @@ export default async function ModulePage({ params }: PageProps<"/[role]/[page]">
         <div className="flex flex-wrap items-center gap-2">
           <h1 className="text-2xl font-semibold">{page.title}</h1>
           <PhaseBadge phase={page.phase} />
+          {page.draft && (
+            <span className="rounded-md border border-dashed px-2 py-0.5 text-xs text-muted-foreground">
+              Draft: not in spec or roles doc
+            </span>
+          )}
         </div>
         <p className="text-muted-foreground">{page.summary}</p>
         <p className="text-xs text-muted-foreground">
@@ -37,6 +43,29 @@ export default async function ModulePage({ params }: PageProps<"/[role]/[page]">
       <RequirementsPanel requirements={page.requirements} />
 
       <ShellPreview shell={page.shell} />
+
+      {page.directory && (
+        <div className="space-y-4">
+          {roles
+            .filter((x) => x.slug !== role.slug)
+            .map((x) => (
+              <section key={x.slug} className="rounded-lg border bg-card p-4">
+                <h2 className="font-semibold">{x.title}</h2>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {x.pages.map((p) => (
+                    <Link
+                      key={p.slug}
+                      href={`/${x.slug}/${p.slug}`}
+                      className="rounded-md border px-2.5 py-1 text-sm hover:bg-muted"
+                    >
+                      {p.title}
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            ))}
+        </div>
+      )}
 
       {page.future.length > 0 && (
         <section className="rounded-lg border border-dashed bg-card p-4">

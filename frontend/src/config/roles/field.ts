@@ -1,4 +1,5 @@
-import { r, type Role } from "../types";
+import { pick } from "../library";
+import type { Role } from "../types";
 
 export const supervisor: Role = {
   slug: "supervisor",
@@ -7,88 +8,20 @@ export const supervisor: Role = {
   use: "Records attendance for placed workers at a client site. May be an ITHC employee or a trusted client contact with restricted access.",
   layout: "mobile",
   pages: [
-    {
-      slug: "attendance",
-      title: "Daily Attendance",
-      summary: "Simple present / absent / hours entry per worker per day, usable on a phone.",
-      ref: "§5.2, §7.1b",
-      phase: "phase1",
-      requirements: [
-        r("Daily capture: present / absent / partial, and hours where hourly", "§5.2, §7.1b"),
-        r("One entry per worker per day, usable on a phone", "§7.1b"),
-        r("Recorded by the site supervisor; the only evidence of work for non-driving roles", "§5.2"),
-        r("Feeds the earnings engine and revenue on hourly contracts", "§5.2, §7.1b"),
-        r("Restricted access for a client contact: only their site", "§4"),
-        r("How attendance is captured where ITHC has no staff on site is still to be confirmed", "§11"),
-      ],
-      future: ["Multi-supervisor views (P2)", "Attendance dashboards (P2)"],
-      shell: { columns: ["Worker", "Present", "Absent", "Partial", "Hours"], actions: ["Save attendance"] },
-    },
-    {
-      slug: "summary",
-      title: "Monthly Attendance Summary",
-      summary: "Per site and per client, for invoicing.",
-      ref: "§7.1b, §7.8",
-      phase: "phase1",
-      requirements: [
-        r("Monthly attendance summary per site and per client for invoicing", "§7.1b"),
-        r("Drives revenue on hourly contracts", "§7.1b"),
-        r("Fixed monthly labour charge prorated by attendance", "§7.5"),
-      ],
-      future: [],
-      shell: { columns: ["Site", "Client", "Month", "Days present", "Hours", "Absences"] },
-    },
+    pick("supervisor", "attendance", { patch: { title: "Home — Daily Attendance" } }),
+    pick("supervisor", "summary"),
   ],
 };
 
 export const worker: Role = {
   slug: "worker",
-  title: "Worker (Driver)",
+  title: "Workers",
   count: "~260 drivers",
-  use: "Minimal read-only interaction. Not a dispatch application.",
+  use: "Minimal read-only view: shift, vehicle and handover acknowledgement. Not a dispatch application.",
   layout: "mobile",
   pages: [
-    {
-      slug: "shift",
-      title: "My Shift",
-      summary: "View assigned shift.",
-      ref: "§6.3",
-      phase: "phase1",
-      requirements: [
-        r("View assigned shift", "§6.3"),
-        r("Read-only", "§4"),
-        r("Not a dispatch application", "§6.3"),
-      ],
-      future: ["Full driver mobile application (P2)", "GPS and live tracking (P2)"],
-      shell: { columns: ["Date", "Start", "End", "Client / Store"] },
-    },
-    {
-      slug: "vehicle",
-      title: "My Vehicle",
-      summary: "View assigned vehicle.",
-      ref: "§6.3",
-      phase: "phase1",
-      requirements: [
-        r("View assigned vehicle", "§6.3"),
-        r("Dedicated bike shown for duration of employment; pooled car shown per shift", "§3.10"),
-      ],
-      future: [],
-      shell: { columns: ["Registration", "Type", "Assignment mode", "Handover desk"] },
-    },
-    {
-      slug: "acknowledge",
-      title: "Acknowledge Handover",
-      summary: "Acknowledge handover and inspection.",
-      ref: "§6.3",
-      phase: "phase1",
-      requirements: [
-        r("Acknowledge handover", "§6.3"),
-        r("Acknowledge inspection result", "§6.3"),
-        r("Acknowledgement is recorded against the HandoverEvent", "§5.3"),
-        r("Arabic / English per language decision", "§8.2"),
-      ],
-      future: [],
-      shell: { actions: ["Acknowledge handover", "Acknowledge inspection"] },
-    },
+    pick("worker", "shift"),
+    pick("worker", "vehicle"),
+    pick("worker", "acknowledge"),
   ],
 };

@@ -32,6 +32,10 @@ export interface ModulePage {
   /** Planned for later phases or explicitly deferred. */
   future: string[];
   shell: PageShell;
+  /** Shows links to every role's pages (read-only monitoring). */
+  directory?: boolean;
+  /** Content drafted by us; not stated in the spec or the roles doc. */
+  draft?: boolean;
 }
 
 export interface Role {
@@ -40,6 +44,8 @@ export interface Role {
   count: string;
   use: string;
   layout: Layout;
+  /** Shows the All / single company selector. */
+  companySelector?: boolean;
   pages: ModulePage[];
 }
 
