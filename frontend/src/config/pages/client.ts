@@ -81,6 +81,8 @@ export const client: Role = {
         r("ClientContact: dated record of every visit, call or meeting, with outcome", "§5.4", "p1"),
         r("Every live contract has a contact log", "§7.14", "p1"),
         r("Any contract without a logged contact in 30 days is flagged to the principal", "§7.14", "p1"),
+        r("Each contract shows its last contact date and the days since", "§7.14", "p1"),
+        r("Contracts nearing the 30-day limit are visible before they breach it", "§7.14", "p1"),
       ],
       future: [],
       shell: { columns: ["Date", "Client", "Contract", "Type", "Outcome"], actions: ["Log contact"] },
@@ -94,6 +96,9 @@ export const client: Role = {
       requirements: [
         r("Renewal calendar twelve months out", "§7.14", "p1"),
         r("Contract versions and end dates drive the calendar", "§5.4", "p1"),
+        r("Each renewal shows the heads at stake under that contract", "§7.14", "p1"),
+        r("Each renewal links to the contract and its seat-fill", "§7.14", "p1"),
+        r("Finance / Commercial Manager is notified, in the app and by email, before a client contract expires", "decision", "p1"),
       ],
       future: [],
       shell: { columns: ["Month", "Contract", "Client", "Renewal date", "Heads"] },

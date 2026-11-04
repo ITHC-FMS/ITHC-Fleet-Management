@@ -44,8 +44,6 @@ export interface Role {
   count: string;
   use: string;
   layout: Layout;
-  /** Shows the All / single company selector. */
-  companySelector?: boolean;
   pages: ModulePage[];
 }
 

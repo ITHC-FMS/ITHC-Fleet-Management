@@ -29,22 +29,31 @@ export const operations: Role = {
       },
     },
     pick("operations", "orders", {
+      extraFuture: ["Hourly platform APIs (P2)"],
       extra: [r("Order intake mechanism (manual grid, import or API) to be confirmed", "§8.4, §7.13")],
     }),
     pick("operations", "assignments", {
-      extra: [r("Edits driver-to-client assignments; worker-to-vehicle assignments are edited by the Fleet Manager", ROLES_DOC)],
+      extra: [
+        r("Edits driver-to-client assignments; worker-to-vehicle assignments are edited by the Fleet Manager", ROLES_DOC),
+        r("A blocked worker cannot be given assignments or tasks", "decision"),
+      ],
     }),
-    pick("operations", "schedule"),
+    pick("operations", "schedule", {
+      extraFuture: ["Shift recommendation (P2)", "AI-assisted schedule extraction (P2)"],
+    }),
     pick("operations", "stores"),
-    pick("operations", "imports"),
+    pick("operations", "imports", {
+      extraFuture: ["AI-assisted import (P2)", "Hourly platform APIs (P2)"],
+    }),
     pick("operations", "reports", {
+      extraFuture: ["Heatmaps (P2)"],
       extra: [
         r("Driver rankings", "§7.8", "p1"),
         r("Day-of-week and week-over-week trend views", "§7.8", "p1"),
-        r("Cross-company reports follow the company selector", ROLES_DOC),
       ],
     }),
     pick("operations", "performance", {
+      extraFuture: ["Keeta VDA suite (P2)"],
       extra: [
         r("Marketplace operations dashboard: batch distribution, pace against target, KPI alerts", "§7.8", "p1"),
       ],

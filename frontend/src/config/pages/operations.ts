@@ -68,7 +68,7 @@ export const operations: Role = {
         r("DriverClientAssignment records the contract-owning company explicitly", "§5.2"),
         r("Supports substitution (one driver covering another's route)", "§5.2"),
         r("Audit log on every assignment mutation", "§5.5"),
-        r("Cross-company arrangements supported", "§4"),
+        r("Built to support cross-company arrangements if a second company is added; ITHC is the only company today", "§4, decision"),
       ],
       future: [],
       shell: {
@@ -166,7 +166,7 @@ export const operations: Role = {
         r("Targets and rates are contract and driver configuration, never constants", "§7.6"),
         r("Placed labour: base and allowances prorated by attendance, no order-based components", "§7.6"),
         r("Transition indicator for drivers whose client or contract changed in the period", "§7.7"),
-        r("Export PDF payslips and Excel per operating company, on that company's letterhead", "§7.7"),
+        r("Export PDF payslips and Excel on the company letterhead", "§7.7"),
         r("Structured CSV/JSON export, driver-identified, with full component breakdown (to the accounting system)", "§8.3"),
         r("No payment disbursement, WPS, PIFSS or indemnity calculation", "§2, §10.1"),
       ],
@@ -245,6 +245,9 @@ export const operations: Role = {
       requirements: [
         r("Minimal create / edit / list in Phase 1", "§5.5"),
         r("Drivers are scheduled against stores for store-based clients", "§5.5"),
+        r("A store belongs to a client and sits in a zone", "§5.5"),
+        r("Stores and zones are used by order entry and the schedule", "§5.5, §6.1"),
+        r("Audit log on changes", "§5.5"),
       ],
       future: [],
       shell: { columns: ["Store / Zone", "Client", "Area", "Status"], actions: ["Add store", "Add zone"] },

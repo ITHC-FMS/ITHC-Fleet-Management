@@ -69,16 +69,18 @@ export const principal: Role = {
     {
       slug: "group-pnl",
       title: "Group P&L",
-      summary: "Cross-company profit and loss for the principal.",
+      summary: "Profit and loss for the whole business.",
       ref: "§7.8 (P1)",
       phase: "p1",
       requirements: [
-        r("Cross-company group dashboard", "§7.8", "p1"),
+        r("Group dashboard for the whole business", "§7.8", "p1"),
         r("Daily and monthly P&L", "§7.8", "p1"),
-        r("Respect multi-company access control", "§4", "p1"),
+        r("Revenue, cost and margin per month; built to show a second company if one is added", "§4, decision", "p1"),
+        r("All figures in KD to three decimals", "§0", "p1"),
+        r("Respect company-scoped access control", "§4", "p1"),
       ],
       future: [],
-      shell: { kpis: ["Revenue", "Cost", "Margin"], columns: ["Company", "Month", "Revenue (KD)", "Cost (KD)", "Margin (KD)"] },
+      shell: { kpis: ["Revenue", "Cost", "Margin"], columns: ["Month", "Revenue (KD)", "Cost (KD)", "Margin (KD)"] },
     },
     {
       slug: "vehicle-tco",
@@ -104,6 +106,8 @@ export const principal: Role = {
       requirements: [
         r("Filter over the margin-per-worker report showing negative contribution", "§7.14", "p1"),
         r("Show days-in-state for each head", "§7.14", "p1"),
+        r("Contribution is the worker's monthly margin after carrying costs such as housing, food, insurance, permit amortisation and base pay where applicable", "§7.14", "p1"),
+        r("Each worker links to the margin-per-worker report", "§7.8, §7.14", "p1"),
       ],
       future: [],
       shell: { columns: ["Worker", "Client", "Monthly contribution (KD)", "Days in state"] },
@@ -117,6 +121,8 @@ export const principal: Role = {
       requirements: [
         r("Principal can see the ClientContact log unfiltered", "§5.4", "p1"),
         r("Contracts with no logged contact in 30 days flagged to the principal directly", "§7.14", "p1"),
+        r("Each entry shows who logged it, the date, type and outcome", "§5.4", "p1"),
+        r("Read-only for the CEO", "decision", "p1"),
       ],
       future: [],
       shell: { columns: ["Date", "Client", "Contract", "Type", "Outcome", "Logged by"] },

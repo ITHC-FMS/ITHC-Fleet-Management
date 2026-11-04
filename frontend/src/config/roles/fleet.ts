@@ -1,11 +1,11 @@
-import { pick, ROLES_DOC } from "../library";
+import { accountRequirements, notificationsPage, pick, ROLES_DOC } from "../library";
 import { r, type Role } from "../types";
 
 export const fleet: Role = {
   slug: "fleet",
   title: "Fleet Manager",
   count: "Small team",
-  use: "Owns every vehicle, from acquisition and daily use to service and return to the fleet.",
+  use: "Owns every vehicle, from acquisition and daily use to service and return to the fleet, including lessor contracts and handover desk users.",
   layout: "desktop",
   pages: [
     {
@@ -27,13 +27,44 @@ export const fleet: Role = {
       shell: { kpis: ["In service", "Under repair", "Open service jobs", "Fuel anomalies"] },
     },
     pick("operations", "vehicles", {
+      extraFuture: [
+        "Assets beyond vehicles: SIMs, lockers and devices (P2)",
+        "GPS, idle detection and live tracking (P2)",
+      ],
       extra: [
-        r("Fleet categories: in-house (owned) and leased from other fleet companies", "Roles doc p.1"),
-        r("Lessor record for each leasing fleet company; vehicles linked to their lessor", "Roles doc p.1"),
-        r("Mapping between in-house / leased and the spec's rented / cash / financed to be confirmed", "decision"),
+        r("Fleet categories: in-house (owned by ITHC) and leased from external lessors", "Roles doc p.1"),
+        r("In-house maps to cash and leased maps to rented; financed stays in the spec but is not used today", "decision"),
+        r("Each leased vehicle is linked to its lessor and lessor contract (see Lessors)", "Roles doc p.1"),
+        r("A leased vehicle is assignable only while its lessor contract is valid; once it expires the vehicle is no longer offered for new assignments", "decision"),
+        r("Existing assignments on an expired contract are handled manually; the system only notifies the Fleet Manager", "decision"),
+        r("ITHC-owned vehicles are prefilled at go-live", "decision"),
         r("Leased vehicles are matched by hired drivers with compliance checks (see HR)", "Roles doc p.1"),
       ],
     }),
+    {
+      slug: "lessors",
+      title: "Lessors & Lessor Contracts",
+      summary: "External companies supplying vehicles under contract.",
+      ref: "Roles doc p.1, decision",
+      phase: "phase1",
+      requirements: [
+        r("Lessor record for each supplier of leased vehicles (Max Dash, Swift Link and others)", "Roles doc p.1"),
+        r("Lessor contract with start and end dates, terms and renewal history", "decision"),
+        r("Contracts are revised from period to period; a renewed contract makes its vehicles assignable again", "decision"),
+        r("Leased vehicles are linked to their lessor and contract", "Roles doc p.1"),
+        r("An expired contract removes its vehicles from the assignable list", "decision"),
+        r("Assignments already on those vehicles are handled manually; the Fleet Manager is notified in the app and by email", "decision"),
+        r("Recurring charge and return conditions per rented vehicle", "§3.1"),
+        r("Contract documents stored with dates and feeding the Compliance Watchlist", "§7.1a"),
+        r("Audit log on every change", "§5.5"),
+      ],
+      future: [],
+      shell: {
+        kpis: ["Active contracts", "Expiring ≤60 days", "Vehicles affected"],
+        columns: ["Lessor", "Contract", "Start", "End", "Vehicles", "Status"],
+        actions: ["Add lessor", "Add contract", "Renew"],
+      },
+    },
     pick("operations", "locations"),
     {
       slug: "vehicle-assignments",
@@ -49,6 +80,8 @@ export const fleet: Role = {
         r("Pooled cars issued through the handover desk; dedicated bikes assigned for the duration of employment", "§3.10"),
         r("Transport vehicles assigned to a route, not a worker", "§3.10"),
         r("Audit log on every assignment mutation", "§5.5"),
+        r("A blocked worker cannot be assigned a vehicle", "decision"),
+        r("Only vehicles that are in-house or on a valid lessor contract can be assigned", "decision"),
       ],
       future: [],
       shell: { columns: ["Vehicle", "Mode", "Worker", "From", "To (inclusive)", "Conflict"], actions: ["New assignment"] },
@@ -69,7 +102,11 @@ export const fleet: Role = {
       future: [],
       shell: { columns: ["Date", "Vehicle", "Driver", "Result", "Incident", "Photos"], actions: ["Open incident"] },
     },
-    pick("fleet", "damaged"),
+    pick("fleet", "damaged", {
+      extra: [
+        r("Damage is recorded in the system; if needed the Fleet Manager reassigns the driver to another vehicle", "decision"),
+      ],
+    }),
     pick("fleet", "jobs"),
     pick("fleet", "return"),
     pick("operations", "fuel"),
@@ -92,5 +129,25 @@ export const fleet: Role = {
       shell: { columns: ["Vehicle", "Type", "Issued", "Expires", "Version"], actions: ["Upload document"] },
     },
     pick("principal", "utilisation"),
+    {
+      slug: "desk-users",
+      title: "Handover Desk Users",
+      summary: "Onboard and offboard the staff who run the handover desks.",
+      ref: "Roles doc, p.8, decision",
+      phase: "phase1",
+      requirements: [
+        r("Fleet Manager creates and offboards handover desk users", "decision"),
+        r("Each desk user has an individual account, not a shared desk login", "decision"),
+        r("Each user is linked to the desk they work at, so they see only vehicles homed there", "§6.2"),
+        r("Every handover and inspection is attributable to the person who recorded it", "§6.2, decision"),
+        ...accountRequirements("handover desk users"),
+      ],
+      future: [],
+      shell: {
+        columns: ["Name", "Username", "Desk", "Status"],
+        actions: ["Add desk user", "Change desk", "Offboard"],
+      },
+    },
+    notificationsPage("lessor contracts and vehicle documents"),
   ],
 };

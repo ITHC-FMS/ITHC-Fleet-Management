@@ -67,16 +67,18 @@ export default async function ModulePage({ params }: PageProps<"/[role]/[page]">
         </div>
       )}
 
-      {page.future.length > 0 && (
-        <section className="rounded-lg border border-dashed bg-card p-4">
-          <h2 className="font-semibold">Planned for the future</h2>
+      <section className="rounded-lg border border-dashed bg-card p-4">
+        <h2 className="font-semibold">Planned for the future</h2>
+        {page.future.length > 0 ? (
           <ul className="mt-2 list-disc space-y-1 pl-5 text-sm">
             {page.future.map((f) => (
               <li key={f}>{f}</li>
             ))}
           </ul>
-        </section>
-      )}
+        ) : (
+          <p className="mt-2 text-sm text-muted-foreground">Nothing is deferred for this page.</p>
+        )}
+      </section>
     </div>
   );
 }

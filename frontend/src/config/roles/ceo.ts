@@ -5,19 +5,17 @@ export const ceo: Role = {
   slug: "ceo",
   title: "Group CEO",
   count: "1–2 users",
-  use: "Views the entire business and monitors it. Read-only, across all companies.",
+  use: "Views the entire business and monitors it. Read-only.",
   layout: "desktop",
-  companySelector: true,
   pages: [
     {
       slug: "home",
       title: "Home — Group Dashboard",
-      summary: "Cross-company view of the whole business.",
+      summary: "View of the whole business.",
       ref: "§7.8, §7.14, §10.1",
       phase: "phase1",
       requirements: [
         r("Read-only monitoring of the entire business", ROLES_DOC),
-        r("Company selector: all companies combined, or one company at a time", ROLES_DOC),
         r("Operational dashboard in Phase 1", "§10.1"),
         r("Margin per client, vehicle and worker", "§7.8"),
         r("Vehicle utilisation", "§7.8"),
@@ -25,14 +23,13 @@ export const ceo: Role = {
         r("Seat-fill escalations (contracts below client minimum)", "§7.14"),
         r("Pipeline in seats", "§7.14"),
         r("Opportunities waiting for written approval", "§7.14"),
-        r("Cross-company group dashboard", "§7.8", "p1"),
+        r("Group dashboard for the whole business", "§7.8", "p1"),
         r("Daily and monthly P&L, vehicle TCO", "§7.8", "p1"),
         r("All monetary figures in KD to three decimals", "§0"),
       ],
       future: ["Marketplace operations dashboard (batch distribution, pace against target, KPI alerts)"],
       shell: {
         kpis: ["Margin (KD)", "Utilisation", "Seat-fill", "Approvals waiting"],
-        actions: ["Company selector"],
       },
     },
     {
@@ -72,8 +69,9 @@ export const ceo: Role = {
       directory: true,
       requirements: [
         r("CEO can open every module in a read-only view", ROLES_DOC),
-        r("Honours the company selector", ROLES_DOC),
         r("No edit actions are available to the CEO", ROLES_DOC),
+        r("Lists every page of every role, grouped by role, including pages added later", ROLES_DOC),
+        r("The CEO's only approval action is on Contract Approvals", "decision"),
       ],
       future: [],
       shell: {},

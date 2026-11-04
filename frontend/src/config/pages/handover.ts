@@ -72,7 +72,7 @@ export const handover: Role = {
       phase: "phase1",
       requirements: [
         r("Incident recorded against the vehicle and the handover event", "§7.4"),
-        r("Vehicle routed to the service team; status changes; leaves the available pool", "§7.4"),
+        r("Vehicle routed to the Fleet Manager for service; status changes; leaves the available pool", "§7.4"),
         r("A replacement vehicle is issued immediately so the shift does not stop", "§7.4"),
         r("Damage assessment and replacement vehicle recorded on VehicleIncident", "§5.3"),
         r("Photographic evidence attached", "§6.2"),

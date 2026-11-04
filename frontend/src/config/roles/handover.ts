@@ -26,7 +26,12 @@ export const handover: Role = {
     },
     pick("handover", "handover"),
     pick("handover", "inspection"),
-    pick("handover", "offline"),
+    pick("handover", "offline", {
+      extra: [
+        r("Sync conflicts are not merged automatically; apart from damage they are held for customer support to resolve", "decision"),
+        r("Vehicle damage is recorded in the system; the Fleet Manager may reassign the driver to another vehicle", "decision"),
+      ],
+    }),
     pick("handover", "incident"),
   ],
 };

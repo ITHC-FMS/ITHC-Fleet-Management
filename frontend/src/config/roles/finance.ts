@@ -1,4 +1,4 @@
-import { pick, ROLES_DOC } from "../library";
+import { notificationsPage, pick, ROLES_DOC } from "../library";
 import { r, type Role } from "../types";
 
 export const finance: Role = {
@@ -32,6 +32,7 @@ export const finance: Role = {
         r("Client records are created by Company Admin; Finance selects an existing client", "decision"),
         r("Contract created from a signed opportunity handed over by Client & Deployment", "§5.4, decision"),
         r("Contracts below 2.0× break-even show their CEO approval status", "§7.14", "p1"),
+        r("Finance / Commercial Manager is notified, in the app and by email, before a client contract expires", "decision"),
       ],
     }),
     {
@@ -100,5 +101,6 @@ export const finance: Role = {
       future: [],
       shell: { columns: ["Contract", "Type", "Issued", "Expires", "Version"], actions: ["Upload document"] },
     },
+    notificationsPage("client contracts and contract documents"),
   ],
 };

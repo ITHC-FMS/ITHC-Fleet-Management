@@ -23,23 +23,6 @@ export function RoleSwitcher({ roles, current }: { roles: { slug: string; title:
   );
 }
 
-// Max Dash and Swift Link are named in the spec as ITHC's operating companies.
-const COMPANIES = ["All companies (combined)", "Max Dash", "Swift Link"];
-
-export function CompanySelector() {
-  return (
-    <select
-      aria-label="Company"
-      defaultValue={COMPANIES[0]}
-      className="h-9 max-w-[200px] rounded-md border bg-background px-2 text-sm"
-    >
-      {COMPANIES.map((c) => (
-        <option key={c}>{c}</option>
-      ))}
-    </select>
-  );
-}
-
 export function PageNav({ role }: { role: Pick<Role, "slug" | "pages"> }) {
   const pathname = usePathname();
   return (
