@@ -36,6 +36,12 @@ export interface ModulePage {
   directory?: boolean;
   /** Content drafted by us; not stated in the spec or the roles doc. */
   draft?: boolean;
+  /** Set by pick(): the shared base page this one was built from, e.g. "operations/orders". */
+  source?: string;
+  /** Set by pick() when the role only views this page. */
+  readOnly?: boolean;
+  /** Role that edits the page when readOnly. */
+  editedBy?: string;
 }
 
 export interface Role {

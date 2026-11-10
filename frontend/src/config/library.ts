@@ -67,12 +67,15 @@ export function pick(from: string, slug: string, opts: PickOptions = {}): Module
   let page: ModulePage = {
     ...base,
     ...opts.patch,
+    source: `${from}/${slug}`,
     requirements: [...base.requirements, ...(opts.extra ?? [])],
     future: [...(opts.patch?.future ?? base.future), ...(opts.extraFuture ?? [])],
   };
   if (opts.readOnlyBy) {
     page = {
       ...page,
+      readOnly: true,
+      editedBy: opts.readOnlyBy,
       title: `${page.title} (read-only)`,
       requirements: [
         r(`Read-only view. Editing is done by ${opts.readOnlyBy}`, ROLES_DOC),

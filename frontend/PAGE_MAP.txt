@@ -1,0 +1,102 @@
+ceo/home	-	rw	11req	Home — Group Dashboard
+ceo/approvals	-	rw	6req	Contract Approvals
+ceo/margin	principal/margin	rw	5req	Margin Reports
+ceo/utilisation	principal/utilisation	rw	4req	Vehicle Utilisation
+ceo/group-pnl	principal/group-pnl	rw	5req	Group P&L
+ceo/vehicle-tco	principal/vehicle-tco	rw	4req	Vehicle Total Cost of Ownership
+ceo/loss-making	principal/loss-making	rw	4req	Loss-making Workers
+ceo/contact-log	principal/contact-log	rw	4req	Client Contact Log (unfiltered)
+ceo/audit-log	principal/audit-log	rw	5req	Audit Log
+ceo/reports	operations/reports	RO	9req	Reports (read-only)
+ceo/all-modules	-	rw	4req	All Modules (read-only)
+admin/home	-	rw	5req	Home — Admin Overview
+admin/clients	-	rw	6req	Clients
+admin/users	-	rw	15req	Manager Users
+admin/roles	-	rw	9req	Roles & Permissions
+admin/company	-	rw	5req	Company Profile
+admin/workers	operations/workers	RO	11req	Workers (read-only)
+admin/assignments	operations/assignments	RO	10req	Assignments (read-only)
+admin/vehicles	operations/vehicles	RO	10req	Vehicles (read-only)
+admin/assignment-audit	-	rw	4req	Assignment Audit Log
+admin/audit-log	principal/audit-log	rw	5req	Audit Log
+admin/contracts	operations/contracts	rw	11req	Client Contracts
+admin/documents	housing/documents	rw	9req	Documents
+admin/watchlist	-	rw	8req	Compliance Watchlist
+admin/go-live-import	-	rw	9req	Go-Live Data Import
+admin/notifications	-	rw	7req	Notifications
+operations/home	-	rw	7req	Home — Operations Dashboard
+operations/orders	operations/orders	rw	9req	Order Entry
+operations/assignments	operations/assignments	rw	11req	Assignments
+operations/schedule	operations/schedule	rw	5req	Shift Schedule
+operations/stores	operations/stores	rw	5req	Stores & Zones
+operations/imports	operations/imports	rw	5req	Data Import & Export
+operations/reports	operations/reports	rw	10req	Reports
+operations/performance	operations/performance	rw	7req	Marketplace Performance
+operations/workers	operations/workers	RO	11req	Workers (read-only)
+finance/home	-	rw	6req	Home — Commercial Overview
+finance/contracts	operations/contracts	rw	14req	Clients & Contracts
+finance/signed	-	rw	4req	Signed Opportunities
+finance/revenue	operations/revenue	rw	11req	Revenue Engine
+finance/cash	operations/cash	rw	4req	Cash Collection
+finance/reconciliation	-	rw	5req	Client Invoice Reconciliation
+finance/costs	-	rw	6req	Costs
+finance/documents	-	rw	5req	Contract Documents
+finance/notifications	-	rw	7req	Notifications
+payroll/home	-	rw	5req	Home — Payroll Overview
+payroll/payroll	operations/payroll	rw	20req	Payroll Run
+payroll/advances	operations/advances	rw	6req	Advances & Deductions
+payroll/pay-parameters	-	rw	6req	Pay Parameters
+payroll/payroll-config	operations/payroll-config	rw	4req	Payroll Configuration
+fleet/home	-	rw	7req	Home — Fleet Overview
+fleet/vehicles	operations/vehicles	rw	16req	Vehicles
+fleet/lessors	-	rw	9req	Lessors & Lessor Contracts
+fleet/locations	operations/locations	rw	5req	Locations & Handover Desks
+fleet/vehicle-assignments	-	rw	9req	Vehicle Assignments
+fleet/inspections	-	rw	5req	Inspections & Incidents
+fleet/damaged	fleet/damaged	rw	4req	Damaged Vehicles
+fleet/jobs	fleet/jobs	rw	6req	Service Jobs
+fleet/return	fleet/return	rw	6req	Return to Fleet
+fleet/fuel	operations/fuel	rw	4req	Fuel
+fleet/transport	operations/transport	rw	5req	Shared Transport Routes
+fleet/documents	-	rw	6req	Vehicle Documents
+fleet/utilisation	principal/utilisation	rw	4req	Vehicle Utilisation
+fleet/desk-users	-	rw	12req	Handover Desk Users
+fleet/notifications	-	rw	7req	Notifications
+hr/home	-	rw	4req	Home — Workforce Overview
+hr/workers	operations/workers	rw	29req	Workers
+hr/offboarding	operations/offboarding	rw	5req	Offboarding
+hr/documents	-	rw	7req	Worker Documents
+hr/watchlist	-	rw	7req	Compliance Watchlist
+hr/notifications	-	rw	8req	Notifications
+client/home	-	rw	6req	Home — Deployment Dashboard
+client/placements	client/placements	rw	5req	Labour Placements
+client/pipeline	client/pipeline	rw	8req	Commercial Pipeline
+client/seat-fill	client/seat-fill	rw	5req	Seat-Fill
+client/bench	client/bench	rw	4req	Bench
+client/contact-log	client/contact-log	rw	5req	Client Contact Log
+client/renewals	client/renewals	rw	5req	Renewal Calendar
+client/loss-making	principal/loss-making	rw	4req	Loss-making Workers
+housing/home	-	rw	5req	Home — Housing Dashboard
+housing/properties	housing/properties	rw	5req	Properties & Units
+housing/occupancy	housing/occupancy	rw	6req	Occupancy Ledger
+housing/leases	housing/leases	rw	6req	Building Contracts & Renewals
+housing/stays	-	rw	7req	Stay Contracts
+housing/supervisors	-	rw	11req	Site Supervisors
+housing/notifications	-	rw	7req	Notifications
+supervisor/attendance	supervisor/attendance	rw	6req	Home — Daily Attendance
+supervisor/summary	supervisor/summary	rw	5req	Monthly Attendance Summary
+handover/home	-	rw	5req	Home — Desk Screen
+handover/handover	handover/handover	rw	12req	Vehicle Handover
+handover/inspection	handover/inspection	rw	5req	Inspection & Photos
+handover/offline	handover/offline	rw	6req	Offline Queue
+handover/incident	handover/incident	rw	5req	Incident & Replacement
+worker/shift	worker/shift	rw	6req	My Shift
+worker/vehicle	worker/vehicle	rw	5req	My Vehicle
+worker/acknowledge	worker/acknowledge	rw	4req	Acknowledge Handover
+platform/rules	-	rw	16req	Cross-cutting Rules
+platform/sign-in	-	rw	6req	Sign-in
+platform/forgot-password	-	rw	5req	Forgot Password
+platform/first-login	-	rw	4req	First Login
+platform/account	-	rw	5req	My Account
+platform/technical	-	rw	10req	Technical & Integration
+platform/roadmap	-	rw	11req	Phase Roadmap & Exclusions
